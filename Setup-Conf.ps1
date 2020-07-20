@@ -14,3 +14,16 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 
 Write-Host "Chocolatey - Configure Global Affirmation"
 choco feature enable -n allowGlobalConfirmation
+
+Write-Host "Chocolatey - Create Task to upgrade all packages daily"
+Import-Module PSScheduledJob
+$ScheduledJob = @{
+    Name = "Chocolatey StartUp Upgrade"
+    ScriptBlock = {choco upgrade all -y}
+    Trigger = New-JobTrigger -AtStartup -RandomDelay 00:02:00
+    ScheduledJobOption = New-ScheduledJobOption -RunElevated -MultipleInstancePolicy StopExisting -RequireNetwork
+}
+Register-ScheduledJob @ScheduledJob
+
+Write-Host "Chocolatey - Install Basic Packages"
+choco install git autohotkey vscode vlc 
