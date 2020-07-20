@@ -26,4 +26,4 @@ $ScheduledJob = @{
 Register-ScheduledJob @ScheduledJob
 
 Write-Host "Chocolatey - Install Basic Packages"
-choco install git autohotkey vscode vlc 
+choco install git autohotkey vscode vlc choco install powertoys microsoft-windows-terminal
