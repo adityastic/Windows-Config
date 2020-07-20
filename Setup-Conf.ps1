@@ -1,4 +1,5 @@
 . "$PSScriptRoot\Chocolatey-Conf.ps1"
+. "$PSScriptRoot\Powershell-Conf.ps1"
 
 Write-Host "
   ___       _  _  _                  _        _____                 __ 
@@ -12,3 +13,4 @@ Write-Host "
 " 
 
 SetupChocolatey
+SetupPowershell
