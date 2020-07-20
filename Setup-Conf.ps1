@@ -1,5 +1,6 @@
-. "$PSScriptRoot\Chocolatey-Conf.ps1"
-. "$PSScriptRoot\Powershell-Conf.ps1"
+Import-Module ".\Chocolatey-Conf.ps1"
+Import-Module ".\Powershell-Conf.ps1"
+Import-Module ".\ExternalTools-Conf.ps1"
 
 Write-Host "
   ___       _  _  _                  _        _____                 __ 
@@ -14,3 +15,4 @@ Write-Host "
 
 SetupChocolatey
 SetupPowershell
+SetupExternalTools

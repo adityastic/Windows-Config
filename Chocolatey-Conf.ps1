@@ -23,7 +23,7 @@ function ScheduleDailyJob() {
 
 function InstallAllPackages(){
     Write-Host "Chocolatey - Install Basic Packages"
-    choco install git autohotkey vscode vlc choco install powertoys microsoft-windows-terminal
+    choco install git autohotkey vscode vlc choco install powertoys microsoft-windows-terminal postman python
 }
 
 function SetupChocolatey() {
