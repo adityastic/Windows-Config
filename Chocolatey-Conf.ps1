@@ -11,14 +11,22 @@ function ConfigureGlobalConfirmation() {
 
 function ScheduleDailyJob() {
     Import-Module PSScheduledJob
+    Import-Module ScheduledTasks
     Write-Host "Chocolatey - Create Task to upgrade all packages daily"
     $ScheduledJob = @{
         Name = "Chocolatey StartUp Upgrade"
-        ScriptBlock = {choco upgrade all -y}
-        Trigger = New-JobTrigger -AtStartup -RandomDelay 00:02:00
-        ScheduledJobOption = New-ScheduledJobOption -RunElevated -MultipleInstancePolicy StopExisting -RequireNetwork
+        ScriptBlock = {choco upgrade all}
+        Trigger = New-JobTrigger -AtStartup
+        ScheduledJobOption = New-ScheduledJobOption -RunElevated -MultipleInstancePolicy StopExisting -RequireNetwork -StartIfOnBattery -ContinueIfGoingOnBattery
     }
     Register-ScheduledJob @ScheduledJob
+    $task = Get-ScheduledTask -TaskName "Chocolatey StartUp Upgrade"
+    $task.Principal = New-ScheduledTaskPrincipal -UserId "$($env:USERDOMAIN)\$($env:USERNAME)" -LogonType ServiceAccount
+    Set-ScheduledTask $task
+}
+
+function RemoveDailyJob() {
+    Unregister-ScheduledJob "Chocolatey StartUp Upgrade"
 }
 
 function InstallAllPackages(){
