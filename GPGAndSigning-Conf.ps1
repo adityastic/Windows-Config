@@ -30,6 +30,7 @@ function SetupGitAndConfig($gpgKey){
 function InstallGitAndGPG() {
     Write-Host "Installing Git and GNU Privacy Guard for Windows" -BackgroundColor Green
     choco install git gpg4win
+    RefreshEnv
 }
 
 function SetupGPGSinging() {
