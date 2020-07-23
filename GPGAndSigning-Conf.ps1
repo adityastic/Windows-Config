@@ -1,6 +1,6 @@
 function GenerateAndShowGPGKeyPair() {
     Write-Host "Starting Generating a New Key Pair for this machine" -BackgroundColor Green
-    gpg --default-new-key-algo rsa4096 --gen-key
+    # gpg --default-new-key-algo rsa4096 --gen-key
 
     Write-Host "Finding All GPG Keys and Selecting the Top One to Display" -BackgroundColor Green
     $allGPGFound = @()
@@ -14,12 +14,17 @@ function GenerateAndShowGPGKeyPair() {
 }
 
 function SetupGitAndConfig($gpgKey){
+    $DefaultEmail = "adityaofficialgupta@gmail.com"
+    $DefaultName = "Aditya Gupta"
+
     Write-Host "Starting Git Config for GPG and User details"
     git config --global gpg.program "$(where.exe gpg)"
     git config --global commit.gpgsign true
     git config --global user.signingkey "$gpgKey"
-    git config --global user.name "Aditya Gupta"
-    git config --global user.email "adityaofficialgupta@gmail.com"
+    if (!($email = Read-Host -Prompt "Enter the EMAIL which you use to access Git [default: $DefaultEmail]")) { $email = $DefaultEmail }
+    git config --global user.email "$email"
+    if (!($name = Read-Host -Prompt "Enter the NAME which you use to access Git [default: $DefaultName]")) { $name = $DefaultName }
+    git config --global user.name "$name"
 }
 
 function InstallGitAndGPG() {
