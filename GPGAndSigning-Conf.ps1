@@ -1,3 +1,11 @@
+Add-Content -Path "$profile" -Value @'
+
+# Chocolatey profile
+$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+if (Test-Path($ChocolateyProfile)) {
+  Import-Module "$ChocolateyProfile"
+}
+
 function GenerateAndShowGPGKeyPair() {
     Write-Host "Starting Generating a New Key Pair for this machine" -BackgroundColor Green
     gpg --default-new-key-algo rsa4096 --gen-key
