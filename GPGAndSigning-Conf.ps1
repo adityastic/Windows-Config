@@ -1,11 +1,3 @@
-Add-Content -Path "$profile" -Value @'
-
-# Chocolatey profile
-$ChocolateyProfile = "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
-if (Test-Path($ChocolateyProfile)) {
-  Import-Module "$ChocolateyProfile"
-}
-
 function GenerateAndShowGPGKeyPair() {
     Write-Host "Starting Generating a New Key Pair for this machine" -BackgroundColor Green
     gpg --default-new-key-algo rsa4096 --gen-key
@@ -38,6 +30,10 @@ function SetupGitAndConfig($gpgKey){
 function InstallGitAndGPG() {
     Write-Host "Installing Git and GNU Privacy Guard for Windows" -BackgroundColor Green
     choco install git gpg4win
+    
+    $env:ChocolateyInstall = Convert-Path "$((Get-Command choco).Path)\..\.."   
+    Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
+
     RefreshEnv
 }
 
