@@ -1,5 +1,4 @@
 Import-Module ".\Chocolatey-Conf.ps1"
-Import-Module ".\Powershell-Conf.ps1"
 Import-Module ".\ExternalTools-Conf.ps1"
 Import-Module ".\GPGAndSigning-Conf.ps1"
 
@@ -15,6 +14,5 @@ Write-Host "
 " 
 
 SetupChocolatey
-SetupPowershell
 SetupExternalTools
 SetupGPGSinging
