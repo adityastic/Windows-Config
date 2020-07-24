@@ -1,6 +1,6 @@
 function GenerateAndShowGPGKeyPair() {
     Write-Host "Starting Generating a New Key Pair for this machine" -BackgroundColor Green
-    gpg --default-new-key-algo rsa4096 --gen-key
+    gpg --full-generate-key
 
     Write-Host "Finding All GPG Keys and Selecting the Top One to Display" -BackgroundColor Green
     $allGPGFound = @()
