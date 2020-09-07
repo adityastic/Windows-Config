@@ -31,7 +31,7 @@ function RemoveDailyJob() {
 
 function InstallAllPackages(){
     Write-Host "Chocolatey - Install Basic Packages"
-    choco install autohotkey vscode vlc choco install powertoys microsoft-windows-terminal postman python powershell-core
+    choco install autohotkey vscode vlc choco install powertoys microsoft-windows-terminal postman python powershell-core poshgit
 }
 
 function SetupChocolatey() {
