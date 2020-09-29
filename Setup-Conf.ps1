@@ -16,3 +16,6 @@ Write-Host "
 SetupChocolatey
 SetupExternalTools
 SetupGPGSinging
+
+# Hide Shutdown Button for Desktop
+# Set-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\PolicyManager\default\Start\HideShutDown -Name value -Value 1
